@@ -55,3 +55,7 @@ Touches du clavier et effets :
 
 Si le programme ne trouve pas les fonctions c'est un problème de linkage qui peut être réglé par la commande : 
 export LD_LIBRARY_PATH=/usr/local/lib
+
+You will need to install freeglut-devel and libserial in order to use this program.
+
+I used it to read the measurement from an IMU plug to an arduino, plug on my computer.
