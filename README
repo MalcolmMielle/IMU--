@@ -1,0 +1,57 @@
+        _____ _____                                                                                                 
+  /\ /\ \_   \\_   \  _                                                                                             
+ / //_/  / /\/ / /\/ (_)                                                                                            
+/ __ \/\/ /_/\/ /_    _                                                                                             
+\/  \/\____/\____/   (_)                                                                                            
+                                                                                                                    
+                 _ _          _____       _             __                      __                _____             
+  /\ /\___   ___| (_)___      \_   \_ __ | |_ ___ _ __ / _| __ _  ___ ___      / _| ___  _ __     \_   \/\/\  /\ /\ 
+ / //_/ _ \ / _ \ | / __|      / /\/ '_ \| __/ _ \ '__| |_ / _` |/ __/ _ \    | |_ / _ \| '__|     / /\/    \/ / \ \
+/ __ \ (_) |  __/ | \__ \   /\/ /_ | | | | ||  __/ |  |  _| (_| | (_|  __/    |  _| (_) | |     /\/ /_/ /\/\ \ \_/ /
+\/  \/\___/ \___|_|_|___/   \____/ |_| |_|\__\___|_|  |_|  \__,_|\___\___|    |_|  \___/|_|     \____/\/    \/\___/ 
+
+
+
+Programme d'affichage de l'orientation d'un capteur et de l'image échographique par rapport à ce dernier.
+
+/**************************GRANDES LIGNES************************************/
+
+Le programme a pour objectif d'afficher en 3D l'orientation d'un capteur de type centrale inertielle.
+De plus un repère associé comme étant le repère de l'image échographique est affiché.
+
+Le capteur est relié en série par liaison USB. La liaison associée est "USB0", le paramètre est modifiable dans la classe capteur, dans l'initialisation de la liaison Série. En particulier, sous windows les ports sont de type "ACM0".
+
+/***************************FONCTIONNEMENT***********************************/
+
+/******GLOBAL*****/
+Le programme se veut facilement développable. Ainsi, les classes abstraites Capteurs et Enregistreur ont pour objectif de permettre de rajouter différents types de capteurs et de facilement enregistrer leurs trajectoires.
+
+/*****IMU*******/
+Le seul capteur developé ici est l'IMU. Il s'agit d'une centrale inertielle. Elle renvoit donc un roll, un pitch et un yaw qui sont ses trois angles de rotation.
+Ici, le capteur doit renvoyer dans l'ordre : la valeur des accéléromètre, des gyroscopes, du filtre de kalman, et du filtre complémentaire. Il n'y a pas de problèmes si on garde l'ordre à enlever ceux de la fin. Par contre on ne peut pas enlever une valeur du début est garder celles de la fin. On peut éventuellement envoyer des 0 à la place des vrais valeurs. Ainsi on peut envoyer seulement les valeurs des accéléromètres et des gyroscopes mais pas celles de Kalman sans avoir 6 valeurs, même nulles avant.
+Les valeurs sont envoyées avec la rotation en X, puis celle selon Y et celle en Z à la fin.
+
+/*****EnregIMU*****/
+Comme le nom l'indique, il enregistre les différentes orientation de l'IMU dans un fichier texte nommé Carte.txt
+
+/****************************UTILISATION*************************************/
+
+Touches du clavier et effets :
+	- : dézoom
+	+ : zoom
+	z : calibre le capteur.
+	a : affiche les rotation à partir des valeurs des accéléromètres.
+	g : affiche les rotation à partir des valeurs des gyroscopes.
+	k : affiche les rotation à partir des valeurs données par le filtre de Kalman.
+	c : affiche les rotation à partir des valeurs donnés par le filtre complementaire.
+	8 : tourner la caméra vers le haut.
+	6 : tourner la caméra vers la droite.
+	4 : tourner la caméra vers la gauche.
+	2 : tourner la caméra vers le bas.
+	clic droit enfoncé : faire tourner la caméra
+	clic gauche enfoncé : faire zommer/dézommer la caméra
+	
+/*******Pour utiliser lib serial********/
+
+Si le programme ne trouve pas les fonctions c'est un problème de linkage qui peut être réglé par la commande : 
+export LD_LIBRARY_PATH=/usr/local/lib
