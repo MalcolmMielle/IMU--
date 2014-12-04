@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="11.5.1">
+  <zoom_level>8</zoom_level>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>40</x>
+      <y>480</y>
+      <w>216</w>
+      <h>488</h>
+    </coordinates>
+    <panel_attributes>IMU
+--
+#antipitch : float
+#antiyaw : float
+#antiroll : float
+#which : int
+--
+-Capteur()
+-~Capteur()
+-setPitch(p : float) : void
+-setYaw(y : float) : void
+-setRoll(r : float) : void
+-setWhich(i : int) : void
+-getPitchA() : float
+-getYawA() : float
+-getRollA() : float
+-getPitchG() : float
+-getYawG() : float
+-getRollG() : float
+-getPitchK() : float
+-getYawK() : float
+-getRollK() : float
+-getPitchC() : float
+-getYawC() : float
+-getRollC() : float
+-setCalib() : void
+-noCalib() : void
+-getAntipitch() : float
+-getAntiyaw() : float
+-getAntiroll() : float
+-getRealpitch() : float
+-getRealyaw() : float
+-getRealroll() : float
+-readAll() : void
+-paint(g : Graph&amp;) : void
+-who(enr : Enregistreur&amp;) : void
+-affiche() : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>920</x>
+      <y>352</y>
+      <w>232</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>/Graph/
+--
+Capteur : glList à créer
+Repère : glList à créer
+--
+/-draw(Environnement* env)/
+/-draw(IMU* cap)/
+-drawGrid(size : float, step : float) : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>544</x>
+      <y>328</y>
+      <w>296</w>
+      <h>320</h>
+    </coordinates>
+    <panel_attributes>Environnement
+--
+#cap : Capteur*
+#enr : Enregistreur*
+#g : Graph*
+#key : unsigned char
+#x : int
+#y : int
+#button : int
+#state : int
+#mouseLeftDown : bool
+#mouseRightDown : bool
+#mouseX : float
+#mouseY : float
+--
+-Environnement()
+-Environnement(pos : Point)
+-askSensor() : void
+-paint() : void
+-initEnv() : void
+-mainEnv() : void
+-key(key : unsigned char, x : int, y : int) : void
+-mouse(button : int, state : int, x : int, y : int) : void
+-mouseMotion(button : int, state : int) : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>888</x>
+      <y>480</y>
+      <w>408</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>Graph3D
+--
+#imgecho : ImgEcho
+--
+-draw(env : Environnement*) : void
+-draw(cap : IMU*) : void
+-drawInfoImu(cap : IMU*)
+-drawString(str : const char*, x : int, y : int, color[4] : float, font : void*)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>968</x>
+      <y>424</y>
+      <w>40</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>24;24;24;56</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>184</x>
+      <y>136</y>
+      <w>296</w>
+      <h>232</h>
+    </coordinates>
+    <panel_attributes>Point
+--
+#_r : float
+#_teta : float
+#_phi : float
+--
+-Point()
+-Point(float r, float teta, float phi) : void
+-setR(float r) : void
+-setT(float teta) : void
+-setP(float phi) : void
+-move(float teta, float phi) : void
+-getX() : float
+-getY() : float
+-getZ() : float
+-getR() : float
+-getT() : float
+-getP() : float
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>456</x>
+      <y>304</y>
+      <w>104</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+1 - 1</panel_attributes>
+    <additional_attributes>88;40;24;40</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>576</x>
+      <y>80</y>
+      <w>104</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>KeyBack</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>576</x>
+      <y>112</y>
+      <w>104</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>drawCallback</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>752</x>
+      <y>128</y>
+      <w>264</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>Variable Globales
+--
+arduino : LibSerial::SerialStream
+matModel, matView, matModelView : Matrix4
+pos_cam : Point
+vise : Point
+up : Point
+font : void*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>544</x>
+      <y>696</y>
+      <w>288</w>
+      <h>224</h>
+    </coordinates>
+    <panel_attributes>Quaternion
+--
+#float x
+#float y
+#float z
+#float w
+--
+-Quaternion(pitch : float, yaw : float, roll : float)
+-getX() : float
+-getY() : float
+-getZ() : float
+-getW() : float
+-normalize() : void
+-getMatrix() : Matrix4
+-getConjugate() : Quaternion
+-operator*(vec : const Vector3&amp;) : Vector3
+-getAxisAngle(Vector2 vec, angle a)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>1216</x>
+      <y>512</y>
+      <w>40</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>-672;208;-672;208</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>264</x>
+      <y>384</y>
+      <w>216</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>/Enregistreur/
+--
+--
+-Enregistreur()
+/-record(cap : Capteur&amp;) : void/
+/-record(cap : IMU&amp;) : void/</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>456</x>
+      <y>400</y>
+      <w>104</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>88;24;24;24</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>0</x>
+      <y>384</y>
+      <w>216</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>EnregIMU
+--
+--
+-EnregIMU()
+-record(cap : Capteur&amp;)
+-recod(cap : IMU&amp;)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>192</x>
+      <y>392</y>
+      <w>88</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>72;24;24;24</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>288</x>
+      <y>488</y>
+      <w>200</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>/Capteur/
+--
+#mesure : float
+--
+/-readAll() : void/
+/-paint() : void/
+/-who(Enregistreur&amp; enr) : void/
+/-setCalib() : void/
+/-noCalib() : void/
+/-affiche() : void/</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>464</x>
+      <y>480</y>
+      <w>96</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>80;24;24;24</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>232</x>
+      <y>496</y>
+      <w>72</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>56;24;24;24</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>576</x>
+      <y>160</y>
+      <w>104</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>askingSensor</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>576</x>
+      <y>200</y>
+      <w>104</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>askMouse</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>576</x>
+      <y>240</y>
+      <w>104</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>askMouseMotion</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.custom.Text</type>
+    <coordinates>
+      <x>576</x>
+      <y>8</y>
+      <w>120</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>Fonction externes
+servant à utiliser
+les fonctions 
+openGL en C++</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>560</x>
+      <y>0</y>
+      <w>136</w>
+      <h>280</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>888</x>
+      <y>608</y>
+      <w>280</w>
+      <h>136</h>
+    </coordinates>
+    <panel_attributes>ImgEcho
+--
+#vec : Vectors3
+#qua : Quaternion
+--
+ImgEcho(float : roll, float : pitch, float : yaw) : void
+-getX() : void
+-getY() : void
+-getZ() : void
+-getQua() : Quaternion&amp;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>912</x>
+      <y>552</y>
+      <w>40</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>24;24;24;56</additional_attributes>
+  </element>
+</diagram>
